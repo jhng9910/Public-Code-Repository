@@ -1,0 +1,27 @@
+import os   
+    
+# The top argument for walk
+topdir = '.'
+ 
+# The extension to search for
+exten = '.log'
+
+folder = 'new_relic_test'
+
+searchstr = 'GET http://myfakesite.com:80/api'
+count=0
+total=0
+for dirpath, dirnames, files in os.walk(topdir):
+    for name in files:
+        if name.lower().endswith(exten) :
+            filepath = os.path.join(dirpath, name)
+            if filepath.find(folder) > 0 :
+                print(filepath)
+                file = open(filepath, 'r') 
+                content = file.read()
+                print('%s\n' %content )
+                total += 1
+                if content.find(searchstr) >0 :
+                    count += 1
+print("Number of log files in total : %d" % total)                 
+print("Number of days where api has been accessed : %d" % count)
