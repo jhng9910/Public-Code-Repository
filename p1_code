@@ -6,7 +6,7 @@ topdir = '.'
 # The extension to search for
 exten = '.log'
 
-folder = 'new_relic_test'
+folder = 'test'
 
 searchstr = 'GET http://myfakesite.com:80/api'
 count=0
